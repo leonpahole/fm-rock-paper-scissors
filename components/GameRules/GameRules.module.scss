@@ -1,0 +1,30 @@
+@use "../../styles/theme/breakpoints.scss";
+@use "../../styles/theme/typography.scss";
+@use "../../styles/theme/colors.scss";
+
+.wrapper {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  @include breakpoints.md {
+    justify-content: flex-end;
+  }
+
+  .button {
+    border: 1px solid colors.$white;
+    border-radius: 8px;
+
+    padding: 11px 36px 10px 37px;
+
+    @include typography.text-1;
+    color: colors.$white;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: colors.$white;
+      color: colors.$black;
+    }
+  }
+}

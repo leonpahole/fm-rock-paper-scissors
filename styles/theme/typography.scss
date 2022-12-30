@@ -3,3 +3,27 @@
 @use "./breakpoints.scss";
 
 $barlow-semi-condensed-font: var(--barlow-semi-condensed-font);
+
+@mixin text-1 {
+  font-family: $barlow-semi-condensed-font;
+
+  font-style: normal;
+  font-weight: 600;
+  font-size: sizes.px(16);
+  line-height: sizes.px(19);
+  letter-spacing: 2.5px;
+}
+
+@mixin text-heavy {
+  font-style: normal;
+  font-weight: 700;
+  font-size: sizes.px(64);
+  line-height: sizes.px(65);
+}
+
+@mixin text-bold {
+  font-style: normal;
+  font-weight: 700;
+  font-size: sizes.px(32);
+  line-height: sizes.px(32);
+}

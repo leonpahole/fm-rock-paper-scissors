@@ -1,4 +1,7 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import Modal from "react-modal";
+
+Modal.setAppElement("#modals");
 
 export default function Document() {
   return (
@@ -7,6 +10,7 @@ export default function Document() {
       <body>
         <main>
           <Main />
+          <div id="modals" />
         </main>
         <NextScript />
       </body>

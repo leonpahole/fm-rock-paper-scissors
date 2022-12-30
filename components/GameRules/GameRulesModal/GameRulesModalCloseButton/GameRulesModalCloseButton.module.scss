@@ -1,0 +1,17 @@
+@use "../../../../styles/theme/breakpoints.scss";
+
+.showOnlyOnMobile {
+  display: initial;
+
+  @include breakpoints.md {
+    display: none;
+  }
+}
+
+.showOnlyOnNonMobile {
+  display: none;
+
+  @include breakpoints.md {
+    display: initial;
+  }
+}

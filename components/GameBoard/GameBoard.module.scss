@@ -1,0 +1,15 @@
+@use "../../styles/theme/colors.scss";
+
+.wrapper {
+  background: radial-gradient(
+    134.34% 134.34% at 50% 0%,
+    colors.$blue 0%,
+    colors.$dark-blue 100%
+  );
+  min-height: 100vh;
+
+  padding: 32px 21px;
+
+  display: flex;
+  flex-direction: column;
+}
