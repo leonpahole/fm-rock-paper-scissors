@@ -2,9 +2,9 @@
 @use "./theme/typography.scss";
 
 body {
-  min-width: 320px;
+  min-width: 380px;
   width: auto !important;
-  width: 320px;
+  width: 380px;
 
   font-family: typography.$barlow-semi-condensed-font;
 }
