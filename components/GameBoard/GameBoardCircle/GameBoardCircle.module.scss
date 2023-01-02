@@ -2,29 +2,74 @@
 @use "../../../styles/theme/sizes.scss";
 @use "../../../styles/theme/colors.scss";
 
-$circleWidthMd: sizes.px(198);
-$circleHeightMd: sizes.px(203);
+$circleWidthMd: 198px;
+$circleHeightMd: 203px;
 
-$circleWidthSm: sizes.px(130);
-$circleHeightSm: sizes.px(133);
+$circleWidthSm: 130px;
+$circleHeightSm: 133px;
 
 @mixin circleColor($outerColor, $innerColor) {
   background: $outerColor;
 
+  &:hover {
+    .imageBorderHover {
+      background: colors.$white;
+      opacity: 0.05;
+    }
+  }
+
   .imageBorderInner {
     background: $innerColor;
+
+    .imageWrapperOuter {
+      background: colors.$gray-100;
+
+      .imageWrapperInner {
+        background: colors.$white;
+      }
+    }
+  }
+}
+
+@mixin circleSize(
+  $outerWidth,
+  $outerHeight,
+  $outerBottomShadowHeight,
+  $innerWidth,
+  $innerHeight,
+  $innerBottomShadowHeight,
+  $hoverBorderThickness
+) {
+  width: $outerWidth;
+  height: $outerHeight;
+
+  &:hover {
+    .imageBorderHover {
+      width: calc($outerWidth + 2 * $hoverBorderThickness);
+      height: calc($outerHeight + 2 * $hoverBorderThickness);
+
+      top: -$hoverBorderThickness;
+      left: -$hoverBorderThickness;
+    }
+  }
+
+  .imageBorderInner {
+    width: 100%;
+    height: calc($outerHeight - $outerBottomShadowHeight);
+
+    .imageWrapperOuter {
+      width: $innerWidth;
+      height: $innerHeight;
+
+      .imageWrapperInner {
+        width: 100%;
+        height: calc($innerHeight - $innerBottomShadowHeight);
+      }
+    }
   }
 }
 
 .imageBorderOuter {
-  width: $circleWidthSm;
-  height: $circleHeightSm;
-
-  @include breakpoints.md {
-    width: $circleWidthMd;
-    height: $circleHeightMd;
-  }
-
   border-radius: 50%;
 
   box-shadow: 0px 3px 3px rgba($color: colors.$black, $alpha: 0.196706);
@@ -38,41 +83,13 @@ $circleHeightSm: sizes.px(133);
   &:hover {
     .imageBorderHover {
       display: initial;
-
       position: absolute;
-
-      $borderThickness: sizes.px(24);
-
-      width: calc($circleWidthSm + 2 * $borderThickness);
-      height: calc($circleHeightSm + 2 * $borderThickness);
-
-      @include breakpoints.md {
-        width: calc($circleWidthMd + 2 * $borderThickness);
-        height: calc($circleHeightMd + 2 * $borderThickness);
-      }
-
       border-radius: 50%;
-
-      background: colors.$white;
-      opacity: 0.05;
-
-      top: -$borderThickness;
-      left: -$borderThickness;
     }
   }
 
   .imageBorderInner {
-    width: sizes.px(129);
-    height: sizes.px(126);
-
-    @include breakpoints.md {
-      width: sizes.px(198);
-      height: sizes.px(194);
-    }
-
     border-radius: 50%;
-
-    background: colors.$blue-200;
 
     position: absolute;
     top: 0;
@@ -82,35 +99,14 @@ $circleHeightSm: sizes.px(133);
     justify-content: center;
 
     .imageWrapperOuter {
-      width: sizes.px(100);
-      height: sizes.px(100);
-
-      @include breakpoints.md {
-        width: sizes.px(152);
-        height: sizes.px(152);
-      }
-
       border-radius: 50%;
-
-      background: colors.$gray-100;
-
       position: relative;
 
       .imageWrapperInner {
-        width: sizes.px(100);
-        height: sizes.px(94);
-
-        @include breakpoints.md {
-          width: sizes.px(152);
-          height: sizes.px(144);
-        }
-
         position: absolute;
         bottom: 0;
 
         border-radius: 50%;
-
-        background-color: colors.$white;
 
         display: flex;
         align-items: center;
@@ -130,4 +126,45 @@ $circleHeightSm: sizes.px(133);
   &.yellow {
     @include circleColor(colors.$light-yellow, colors.$yellow-200);
   }
+
+  @include circleSize(
+    $circleWidthSm,
+    $circleHeightSm,
+    6px,
+    100px,
+    100px,
+    5px,
+    16px
+  );
+
+  @include breakpoints.md {
+    @include circleSize(
+      $circleWidthMd,
+      $circleHeightMd,
+      9px,
+      152px,
+      152px,
+      8px,
+      24px
+    );
+  }
+
+  &.largeSize {
+    @include breakpoints.md {
+      @include circleSize(293px, 300px, 13px, 225px, 225px, 12px, 24px);
+    }
+  }
+}
+
+.emptyCircle {
+  width: 100px;
+  height: 100px;
+
+  @include breakpoints.md {
+    width: 224px;
+    height: 224px;
+  }
+
+  background: rgba($color: colors.$black, $alpha: 0.1);
+  border-radius: 50%;
 }

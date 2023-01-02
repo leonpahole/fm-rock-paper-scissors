@@ -1,41 +1,69 @@
+import Image from "next/image";
+import { GameModels } from "../../../models/game.models";
 import gameBoardCircleStyles from "./GameBoardCircle.module.scss";
 
 interface IProps {
-  children?: React.ReactNode;
   onClick: () => void;
   className?: string;
-  color: "red" | "yellow" | "blue";
+  symbol: GameModels.Symbol | null;
+  size?: "large" | "regular";
+  disableInteractivity?: boolean;
 }
 
-export const GameBoardCircle = ({
+const GameBoardCircleEmpty = ({ className }: { className?: string }) => {
+  return (
+    <div className={`${gameBoardCircleStyles.emptyCircle} ${className}`} />
+  );
+};
+
+const GameBoardCircleWithImage = ({
+  symbol,
+  size = "regular",
   onClick,
   className,
-  color,
-  children,
+  disableInteractivity = false,
 }: IProps) => {
-  const colorClassMap: Record<typeof color, string> = {
+  const symbolData = GameModels.getSymbolData(symbol!);
+  const colorClassMap: Record<GameModels.Color, string> = {
     blue: gameBoardCircleStyles.blue,
     red: gameBoardCircleStyles.red,
     yellow: gameBoardCircleStyles.yellow,
+  };
+
+  const sizeClassMap: Record<typeof size, string> = {
+    regular: gameBoardCircleStyles.regularSize,
+    large: gameBoardCircleStyles.largeSize,
   };
 
   return (
     <button
       className={`${gameBoardCircleStyles.imageBorderOuter} ${
         className || ""
-      } ${colorClassMap[color]}`}
+      } ${colorClassMap[symbolData.color]} ${sizeClassMap[size]}`}
       type="button"
       onClick={onClick}
+      disabled={disableInteractivity}
     >
-      <div className={gameBoardCircleStyles.imageBorderHover} />
+      {!disableInteractivity && (
+        <div className={gameBoardCircleStyles.imageBorderHover} />
+      )}
 
       <div className={gameBoardCircleStyles.imageBorderInner}>
         <div className={gameBoardCircleStyles.imageWrapperOuter}>
           <div className={gameBoardCircleStyles.imageWrapperInner}>
-            {children}
+            <Image src={symbolData.image.src} alt={symbolData.image.alt} />
           </div>
         </div>
       </div>
     </button>
   );
+};
+
+export const GameBoardCircle = (props: IProps) => {
+  const { symbol } = props;
+  if (symbol == null) {
+    return <GameBoardCircleEmpty />;
+  }
+
+  return <GameBoardCircleWithImage {...props} />;
 };

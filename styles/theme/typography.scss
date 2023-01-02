@@ -15,6 +15,8 @@ $barlow-semi-condensed-font: var(--barlow-semi-condensed-font);
 }
 
 @mixin text-heavy {
+  font-family: $barlow-semi-condensed-font;
+
   font-style: normal;
   font-weight: 700;
   font-size: sizes.px(64);
@@ -22,8 +24,27 @@ $barlow-semi-condensed-font: var(--barlow-semi-condensed-font);
 }
 
 @mixin text-bold {
+  font-family: $barlow-semi-condensed-font;
+
   font-style: normal;
   font-weight: 700;
   font-size: sizes.px(32);
   line-height: sizes.px(32);
+}
+
+@mixin heading-2 {
+  font-family: $barlow-semi-condensed-font;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: sizes.px(15);
+  line-height: sizes.px(32);
+
+  letter-spacing: 1.875px;
+
+  @include breakpoints.md {
+    font-size: sizes.px(24);
+    line-height: sizes.px(32);
+    letter-spacing: 3px;
+  }
 }

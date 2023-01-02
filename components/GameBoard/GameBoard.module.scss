@@ -8,56 +8,9 @@
 
   flex: 1;
 
-  .imageWrapper {
-    position: relative;
+  margin: 64px 0;
 
-    .image {
-      height: auto;
-      width: 100%;
-
-      @include breakpoints.sm {
-        max-width: 180px;
-      }
-
-      @include breakpoints.md {
-        max-width: 313px;
-      }
-    }
-
-    .circle {
-      position: absolute;
-
-      &.paper {
-        top: calc(circle.$circleHeightSm / -2);
-        left: calc(circle.$circleWidthSm / -2);
-
-        @include breakpoints.md {
-          top: calc(circle.$circleHeightMd / -2);
-          left: calc(circle.$circleWidthMd / -2);
-        }
-      }
-
-      &.rock {
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-
-        bottom: calc(circle.$circleHeightSm / -2);
-
-        @include breakpoints.md {
-          bottom: calc(circle.$circleHeightMd / -2);
-        }
-      }
-
-      &.scissors {
-        top: calc(circle.$circleHeightSm / -2);
-        right: calc(circle.$circleWidthSm / -2);
-
-        @include breakpoints.md {
-          top: calc(circle.$circleHeightMd / -2);
-          right: calc(circle.$circleWidthMd / -2);
-        }
-      }
-    }
+  @include breakpoints.md {
+    margin: 32px 0;
   }
 }
