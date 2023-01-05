@@ -6,6 +6,10 @@ export default function Home() {
     <>
       <Head>
         <title>Rock Paper Scissors</title>
+        <meta
+          name="description"
+          content="Play Rock Paper and Scissors against the computer"
+        />
       </Head>
       <Game />
     </>
