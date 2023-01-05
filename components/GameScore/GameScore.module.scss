@@ -33,7 +33,7 @@
   }
 
   .scoreWrapper {
-    padding: 16px 47px 15px 48px;
+    padding: 10px 24px;
     background: linear-gradient(
       0deg,
       colors.$light-gray 0%,
@@ -43,6 +43,10 @@
     border-radius: 8px;
 
     text-align: center;
+
+    @include breakpoints.md {
+      padding: 16px 47px 15px 48px;
+    }
 
     .scoreText {
       @include typography.text-1;

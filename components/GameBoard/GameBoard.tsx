@@ -31,7 +31,8 @@ export const GameBoard = ({ onWin }: IProps) => {
     }
 
     const hasWon =
-      GameModels.getRoundResult(selectedSymbol, computerSelectedSymbol) === 1;
+      GameModels.getRoundResult(selectedSymbol, computerSelectedSymbol) ===
+      "chosen-won";
     if (hasWon) {
       onWin();
     }

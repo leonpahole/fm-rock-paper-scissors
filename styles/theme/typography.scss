@@ -9,9 +9,17 @@ $barlow-semi-condensed-font: var(--barlow-semi-condensed-font);
 
   font-style: normal;
   font-weight: 600;
-  font-size: sizes.px(16);
-  line-height: sizes.px(19);
-  letter-spacing: 2.5px;
+
+  font-size: sizes.px(10);
+  line-height: sizes.px(12);
+
+  letter-spacing: 1.5625px;
+
+  @include breakpoints.md {
+    font-size: sizes.px(16);
+    line-height: sizes.px(19);
+    letter-spacing: 2.5px;
+  }
 }
 
 @mixin text-heavy {
@@ -19,8 +27,14 @@ $barlow-semi-condensed-font: var(--barlow-semi-condensed-font);
 
   font-style: normal;
   font-weight: 700;
-  font-size: sizes.px(64);
-  line-height: sizes.px(65);
+
+  font-size: sizes.px(40);
+  line-height: sizes.px(40);
+
+  @include breakpoints.md {
+    font-size: sizes.px(64);
+    line-height: sizes.px(65);
+  }
 }
 
 @mixin text-bold {

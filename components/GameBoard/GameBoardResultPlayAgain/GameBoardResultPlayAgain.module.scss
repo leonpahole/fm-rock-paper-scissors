@@ -9,10 +9,19 @@
   align-items: center;
   justify-content: center;
 
+  order: 3;
+  flex-basis: 100%;
+
+  @include breakpoints.lg {
+    order: 0;
+    flex-basis: auto;
+  }
+
   .heading {
     @include typography.heading-thick;
     color: colors.$white;
     text-align: center;
+    text-transform: uppercase;
   }
 
   .button {
