@@ -181,6 +181,10 @@ $circleHeightSm: 133px;
     }
 
     animation: white-pulse-animation 1s infinite;
+
+    @media (prefers-reduced-motion) {
+      animation: none;
+    }
   }
 }
 
@@ -206,4 +210,9 @@ $circleHeightSm: 133px;
   border-radius: 50%;
 
   animation: pulse-animation 1s infinite;
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+    box-shadow: 0 0 0 40px rgba(0, 0, 0, 0);
+  }
 }

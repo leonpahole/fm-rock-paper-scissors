@@ -29,6 +29,10 @@
     }
   }
 
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
+
   @include breakpoints.lg {
     order: 0;
     flex-basis: auto;

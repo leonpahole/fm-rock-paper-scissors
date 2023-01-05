@@ -4,12 +4,15 @@ import gameBoardPickerStyles from "./GameBoardPicker.module.scss";
 import { GameBoardCircle } from "../GameBoardCircle/GameBoardCircle";
 import TriangleIcon from "../../../public/images/bg-triangle.svg";
 import { GameModels } from "../../../models/game.models";
+import { usePrefersReducedMotion } from "../../../hooks/usePrefersReducedMotion";
 
 interface IProps {
   onSelect: (symbol: GameModels.Symbol) => void;
 }
 
 export const GameBoardPicker = ({ onSelect }: IProps) => {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   const symbols: GameModels.SymbolList = [
     {
       symbol: "scissors",
@@ -33,7 +36,7 @@ export const GameBoardPicker = ({ onSelect }: IProps) => {
         className={gameBoardPickerStyles.image}
       />
       {symbols.map(({ className, symbol }) => (
-        <Flipped flipId={symbol}>
+        <Flipped flipId={symbol} shouldFlip={() => !prefersReducedMotion}>
           {(flippedProps) => (
             <GameBoardCircle
               key={symbol}

@@ -4,6 +4,7 @@ import { GameBoardCircle } from "../GameBoardCircle/GameBoardCircle";
 import { GameModels } from "../../../models/game.models";
 import { useDelayValue } from "../../../hooks/useDelayValue";
 import { GameBoardResultPlayAgain } from "../GameBoardResultPlayAgain/GameBoardResultPlayAgain";
+import { usePrefersReducedMotion } from "../../../hooks/usePrefersReducedMotion";
 
 interface IProps {
   selectedSymbol: GameModels.Symbol;
@@ -18,9 +19,11 @@ export const GameBoardResult = ({
   onRevealed,
   onPlayAgain,
 }: IProps) => {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   const computerSelectedSymbolAnimated = useDelayValue(
     computerSelectedSymbol,
-    3000,
+    prefersReducedMotion ? 0 : 3000,
     onRevealed
   );
 
@@ -33,7 +36,10 @@ export const GameBoardResult = ({
     <div className={gameBoardResultStyles.wrapper}>
       <article className={gameBoardResultStyles.article}>
         <h2 className={gameBoardResultStyles.heading}>You picked</h2>
-        <Flipped flipId={selectedSymbol}>
+        <Flipped
+          flipId={selectedSymbol}
+          shouldFlip={() => !prefersReducedMotion}
+        >
           <div className={gameBoardResultStyles.circleWrapper}>
             <GameBoardCircle
               symbol={selectedSymbol}
