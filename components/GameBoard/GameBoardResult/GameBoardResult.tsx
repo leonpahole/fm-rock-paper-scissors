@@ -1,3 +1,4 @@
+import { Flipped } from "react-flip-toolkit";
 import gameBoardResultStyles from "./GameBoardResult.module.scss";
 import { GameBoardCircle } from "../GameBoardCircle/GameBoardCircle";
 import { GameModels } from "../../../models/game.models";
@@ -32,23 +33,26 @@ export const GameBoardResult = ({
     <div className={gameBoardResultStyles.wrapper}>
       <article className={gameBoardResultStyles.article}>
         <h2 className={gameBoardResultStyles.heading}>You picked</h2>
-        <div className={gameBoardResultStyles.circleWrapper}>
-          <GameBoardCircle
-            symbol={selectedSymbol}
-            onClick={() => {}}
-            size="large"
-            disableInteractivity
-            hasWon={!!computerSelectedSymbolAnimated && result === "chosen-won"}
-          />
-        </div>
+        <Flipped flipId={selectedSymbol}>
+          <div className={gameBoardResultStyles.circleWrapper}>
+            <GameBoardCircle
+              symbol={selectedSymbol}
+              onClick={() => {}}
+              size="large"
+              disableInteractivity
+              hasWon={
+                !!computerSelectedSymbolAnimated && result === "chosen-won"
+              }
+            />
+          </div>
+        </Flipped>
       </article>
-      {computerSelectedSymbolAnimated && (
-        <GameBoardResultPlayAgain
-          computerSelectedSymbol={computerSelectedSymbol}
-          selectedSymbol={selectedSymbol}
-          onPlayAgain={onPlayAgain}
-        />
-      )}
+      <GameBoardResultPlayAgain
+        computerSelectedSymbol={computerSelectedSymbol}
+        selectedSymbol={selectedSymbol}
+        onPlayAgain={onPlayAgain}
+        show={!!computerSelectedSymbolAnimated}
+      />
       <article className={gameBoardResultStyles.article}>
         <h2 className={gameBoardResultStyles.heading}>The house picked</h2>
         <div className={gameBoardResultStyles.circleWrapper}>

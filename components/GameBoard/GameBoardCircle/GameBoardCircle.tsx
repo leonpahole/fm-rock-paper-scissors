@@ -9,6 +9,7 @@ interface IProps {
   size?: "large" | "regular";
   disableInteractivity?: boolean;
   hasWon?: boolean;
+  flippedProps?: any;
 }
 
 const GameBoardCircleEmpty = ({ className }: { className?: string }) => {
@@ -24,6 +25,7 @@ const GameBoardCircleWithImage = ({
   className,
   disableInteractivity = false,
   hasWon = false,
+  flippedProps,
 }: IProps) => {
   const symbolData = GameModels.getSymbolData(symbol!);
   const colorClassMap: Record<GameModels.Color, string> = {
@@ -47,6 +49,7 @@ const GameBoardCircleWithImage = ({
       type="button"
       onClick={onClick}
       disabled={disableInteractivity}
+      {...flippedProps}
     >
       {!disableInteractivity && (
         <div className={gameBoardCircleStyles.imageBorderHover} />

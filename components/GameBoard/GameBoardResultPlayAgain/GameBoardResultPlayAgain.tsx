@@ -5,12 +5,14 @@ interface IProps {
   computerSelectedSymbol: GameModels.Symbol;
   selectedSymbol: GameModels.Symbol;
   onPlayAgain: () => void;
+  show: boolean;
 }
 
 export const GameBoardResultPlayAgain = ({
   selectedSymbol,
   computerSelectedSymbol,
   onPlayAgain,
+  show,
 }: IProps) => {
   const roundResultText = GameModels.getRoundResultText(
     selectedSymbol,
@@ -18,7 +20,11 @@ export const GameBoardResultPlayAgain = ({
   );
 
   return (
-    <article className={gameBoardResultStyles.wrapper}>
+    <article
+      className={`${gameBoardResultStyles.wrapper} ${
+        show ? gameBoardResultStyles.show : ""
+      }`}
+    >
       <h2 className={gameBoardResultStyles.heading}>{roundResultText}</h2>
       <button
         className={gameBoardResultStyles.button}

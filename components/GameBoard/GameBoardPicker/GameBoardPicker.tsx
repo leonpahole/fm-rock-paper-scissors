@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Flipped } from "react-flip-toolkit";
 import gameBoardPickerStyles from "./GameBoardPicker.module.scss";
 import { GameBoardCircle } from "../GameBoardCircle/GameBoardCircle";
 import TriangleIcon from "../../../public/images/bg-triangle.svg";
@@ -32,14 +33,19 @@ export const GameBoardPicker = ({ onSelect }: IProps) => {
         className={gameBoardPickerStyles.image}
       />
       {symbols.map(({ className, symbol }) => (
-        <GameBoardCircle
-          key={symbol}
-          symbol={symbol}
-          onClick={() => {
-            onSelect(symbol);
-          }}
-          className={`${gameBoardPickerStyles.circle} ${className}`}
-        />
+        <Flipped flipId={symbol}>
+          {(flippedProps) => (
+            <GameBoardCircle
+              key={symbol}
+              symbol={symbol}
+              onClick={() => {
+                onSelect(symbol);
+              }}
+              className={`${gameBoardPickerStyles.circle} ${className}`}
+              flippedProps={flippedProps}
+            />
+          )}
+        </Flipped>
       ))}
     </div>
   );

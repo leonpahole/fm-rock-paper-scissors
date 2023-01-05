@@ -1,5 +1,6 @@
 @use "../../../styles/theme/breakpoints.scss";
 @use "../../../styles/theme/typography.scss";
+@use "../../../styles/theme/sizes.scss";
 @use "../../../styles/theme/colors.scss";
 
 .wrapper {
@@ -12,10 +13,28 @@
   order: 3;
   flex-basis: 100%;
 
+  opacity: 0;
+  transition: opacity ease-in 0.3s;
+
+  @include breakpoints.lg {
+    max-width: 0;
+    transition: max-width ease-in 0.3s, opacity ease-in 0.3s;
+  }
+
+  &.show {
+    opacity: 1;
+
+    @include breakpoints.lg {
+      max-width: sizes.px(300);
+    }
+  }
+
   @include breakpoints.lg {
     order: 0;
     flex-basis: auto;
   }
+
+  white-space: nowrap;
 
   .heading {
     @include typography.heading-thick;

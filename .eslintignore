@@ -5,3 +5,4 @@ public
 package.json
 README.md
 .eslintrc.json
+pnpm-lock.yaml

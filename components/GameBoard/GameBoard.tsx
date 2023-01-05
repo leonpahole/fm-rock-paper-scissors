@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { Flipper } from "react-flip-toolkit";
 import { GameModels } from "../../models/game.models";
 import gameBoardStyles from "./GameBoard.module.scss";
 import { GameBoardPicker } from "./GameBoardPicker/GameBoardPicker";
@@ -38,12 +39,14 @@ export const GameBoard = ({ onWin }: IProps) => {
     }
   }, [computerSelectedSymbol, onWin, selectedSymbol]);
 
+  const showResult = selectedSymbol && computerSelectedSymbol;
+
   let content;
-  if (selectedSymbol && computerSelectedSymbol) {
+  if (showResult) {
     content = (
       <GameBoardResult
-        selectedSymbol={selectedSymbol}
-        computerSelectedSymbol={computerSelectedSymbol}
+        selectedSymbol={selectedSymbol!}
+        computerSelectedSymbol={computerSelectedSymbol!}
         onRevealed={onResultRevealed}
         onPlayAgain={onPlayAgain}
       />
@@ -52,5 +55,9 @@ export const GameBoard = ({ onWin }: IProps) => {
     content = <GameBoardPicker onSelect={onSelect} />;
   }
 
-  return <div className={gameBoardStyles.wrapper}>{content}</div>;
+  return (
+    <Flipper flipKey={showResult} className={gameBoardStyles.wrapper}>
+      {content}
+    </Flipper>
+  );
 };
