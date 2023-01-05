@@ -2,6 +2,9 @@
 @use "../../../styles/theme/sizes.scss";
 @use "../../../styles/theme/colors.scss";
 
+$circleWidthMdLarge: 293px;
+$circleHeightMdLarge: 300px;
+
 $circleWidthMd: 198px;
 $circleHeightMd: 203px;
 
@@ -75,6 +78,10 @@ $circleHeightSm: 133px;
   box-shadow: 0px 3px 3px rgba($color: colors.$black, $alpha: 0.196706);
 
   position: relative;
+
+  &:disabled {
+    cursor: default;
+  }
 
   .imageBorderHover {
     display: none;
@@ -151,12 +158,42 @@ $circleHeightSm: 133px;
 
   &.largeSize {
     @include breakpoints.md {
-      @include circleSize(293px, 300px, 13px, 225px, 225px, 12px, 24px);
+      @include circleSize(
+        $circleWidthMdLarge,
+        $circleHeightMdLarge,
+        13px,
+        225px,
+        225px,
+        12px,
+        24px
+      );
     }
+  }
+
+  &.hasWon {
+    @keyframes white-pulse-animation {
+      0% {
+        box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.2);
+      }
+      100% {
+        box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
+      }
+    }
+
+    animation: white-pulse-animation 1s infinite;
   }
 }
 
 .emptyCircle {
+  @keyframes pulse-animation {
+    0% {
+      box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+      box-shadow: 0 0 0 40px rgba(0, 0, 0, 0);
+    }
+  }
+
   width: 100px;
   height: 100px;
 
@@ -167,4 +204,6 @@ $circleHeightSm: 133px;
 
   background: rgba($color: colors.$black, $alpha: 0.1);
   border-radius: 50%;
+
+  animation: pulse-animation 1s infinite;
 }

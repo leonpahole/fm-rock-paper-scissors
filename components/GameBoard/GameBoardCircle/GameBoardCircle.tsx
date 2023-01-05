@@ -8,6 +8,7 @@ interface IProps {
   symbol: GameModels.Symbol | null;
   size?: "large" | "regular";
   disableInteractivity?: boolean;
+  hasWon?: boolean;
 }
 
 const GameBoardCircleEmpty = ({ className }: { className?: string }) => {
@@ -22,6 +23,7 @@ const GameBoardCircleWithImage = ({
   onClick,
   className,
   disableInteractivity = false,
+  hasWon = false,
 }: IProps) => {
   const symbolData = GameModels.getSymbolData(symbol!);
   const colorClassMap: Record<GameModels.Color, string> = {
@@ -39,7 +41,9 @@ const GameBoardCircleWithImage = ({
     <button
       className={`${gameBoardCircleStyles.imageBorderOuter} ${
         className || ""
-      } ${colorClassMap[symbolData.color]} ${sizeClassMap[size]}`}
+      } ${colorClassMap[symbolData.color]} ${sizeClassMap[size]} ${
+        hasWon ? gameBoardCircleStyles.hasWon : ""
+      }`}
       type="button"
       onClick={onClick}
       disabled={disableInteractivity}

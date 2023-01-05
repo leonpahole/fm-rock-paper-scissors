@@ -48,3 +48,12 @@ $barlow-semi-condensed-font: var(--barlow-semi-condensed-font);
     letter-spacing: 3px;
   }
 }
+
+@mixin heading-thick {
+  font-family: $barlow-semi-condensed-font;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: sizes.px(56);
+  line-height: sizes.px(67);
+}

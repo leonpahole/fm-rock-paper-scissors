@@ -3,7 +3,11 @@ import Logo from "../../public/images/logo.svg";
 import { Breakpoints } from "../../utils/breakpoints";
 import gameScoreStyles from "./GameScore.module.scss";
 
-export const GameScore = () => {
+interface IProps {
+  score: number;
+}
+
+export const GameScore = ({ score }: IProps) => {
   return (
     <div className={gameScoreStyles.wrapper}>
       <div className={gameScoreStyles.logoWrapper}>
@@ -19,7 +23,7 @@ export const GameScore = () => {
       </div>
       <div className={gameScoreStyles.scoreWrapper}>
         <p className={gameScoreStyles.scoreText}>Score</p>
-        <p className={gameScoreStyles.scoreValueText}>12</p>
+        <p className={gameScoreStyles.scoreValueText}>{score}</p>
       </div>
     </div>
   );

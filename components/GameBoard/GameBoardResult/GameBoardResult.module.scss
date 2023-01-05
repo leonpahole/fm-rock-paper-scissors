@@ -1,16 +1,17 @@
 @use "../../../styles/theme/breakpoints.scss";
 @use "../../../styles/theme/typography.scss";
 @use "../../../styles/theme/colors.scss";
+@use "../GameBoardCircle/GameBoardCircle.module.scss" as circle;
 
 .wrapper {
-  display: grid;
+  display: flex;
 
-  grid-template-columns: 1fr 1fr;
+  gap: 51px;
 
-  column-gap: 51px;
+  justify-content: center;
 
   @include breakpoints.md {
-    column-gap: 72px;
+    gap: 72px;
   }
 
   .article {
