@@ -10,15 +10,18 @@
     margin: calc(circle.$circleHeightMd / 2) 0;
   }
 
+  width: auto;
+  height: auto;
+
+  max-width: 180px;
+
+  @include breakpoints.md {
+    max-width: 313px;
+  }
+
   .image {
     height: auto;
     width: 100%;
-
-    max-width: 180px;
-
-    @include breakpoints.md {
-      max-width: 313px;
-    }
   }
 
   .circle {

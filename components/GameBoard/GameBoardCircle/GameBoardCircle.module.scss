@@ -41,7 +41,8 @@ $circleHeightSm: 133px;
   $innerWidth,
   $innerHeight,
   $innerBottomShadowHeight,
-  $hoverBorderThickness
+  $hoverBorderThickness,
+  $imageSize
 ) {
   width: $outerWidth;
   height: $outerHeight;
@@ -67,6 +68,11 @@ $circleHeightSm: 133px;
       .imageWrapperInner {
         width: 100%;
         height: calc($innerHeight - $innerBottomShadowHeight);
+
+        .imageWrapper {
+          width: $imageSize;
+          height: $imageSize;
+        }
       }
     }
   }
@@ -118,6 +124,22 @@ $circleHeightSm: 133px;
         display: flex;
         align-items: center;
         justify-content: center;
+
+        .imageWrapper {
+          position: relative;
+
+          width: 55px;
+          height: 55px;
+
+          @include breakpoints.md {
+            width: 80px;
+            height: 80px;
+          }
+
+          img {
+            object-fit: contain;
+          }
+        }
       }
     }
   }
@@ -141,7 +163,8 @@ $circleHeightSm: 133px;
     100px,
     100px,
     5px,
-    16px
+    16px,
+    55px
   );
 
   @include breakpoints.md {
@@ -152,7 +175,8 @@ $circleHeightSm: 133px;
       152px,
       152px,
       8px,
-      24px
+      24px,
+      80px
     );
   }
 
@@ -165,7 +189,8 @@ $circleHeightSm: 133px;
         225px,
         225px,
         12px,
-        24px
+        24px,
+        118px
       );
     }
   }

@@ -58,7 +58,13 @@ const GameBoardCircleWithImage = ({
       <div className={gameBoardCircleStyles.imageBorderInner}>
         <div className={gameBoardCircleStyles.imageWrapperOuter}>
           <div className={gameBoardCircleStyles.imageWrapperInner}>
-            <Image src={symbolData.image.src} alt={symbolData.image.alt} />
+            <div className={gameBoardCircleStyles.imageWrapper}>
+              <Image
+                src={symbolData.image.src}
+                alt={symbolData.image.alt}
+                fill
+              />
+            </div>
           </div>
         </div>
       </div>
